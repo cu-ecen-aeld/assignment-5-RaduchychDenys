@@ -1,0 +1,28 @@
+#!/bin/sh
+
+modules_path="/lib/modules/$(uname -r)/extra"
+
+do_start(){
+    modprobe hello
+    module_load "${modules_path}/faulty.ko"
+    scull_load
+}
+
+do_stop(){
+    rmmod hello
+    module_unload faulty
+    scull_unload
+}
+
+
+case "$1" in
+    start)
+        do_start
+        ;;
+    stop)
+        do_stop
+        ;;
+    *)
+        echo "Unknown command"
+        ;;
+esac

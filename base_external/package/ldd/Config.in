@@ -1,0 +1,18 @@
+menuconfig BR2_PACKAGE_LDD
+    bool "LDD Package"
+
+if BR2_PACKAGE_LDD
+
+config MISC_MODULES
+    bool "Enable buildig of misc-modules"
+    default y
+    help 
+      Enables building misc modules from LDD source code
+
+config SCULL_MODULE
+    bool "Enable building of scull driver module"
+    default y
+    help
+      Enables building of scull driver from LDD source code
+
+endif
